@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>My Coffee Maker</title>
+    <script
+    src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{url_for('static',filename='jquery.dialogBox.css')}}">
+    <script src="{{url_for('static',filename='jquery.dialogBox.js')}}"></script>
+    <script src="{{url_for('static',filename='loadingoverlay.js')}}"></script>
+    <style>
+    body{
+      font-family:Calibri;
+      background-image: url("{{url_for('static',filename='decent.jpg')}}");
+      background-size:100% 100%;
+    }
+
+    input[type=range] {
+    -webkit-appearance: none;
+    width: 100%;
+    margin: -2.2px 0;
+    bacgkround:none;
+  }
+  input[type=range]:focus {
+    outline: none;
+  }
+  input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 29.4px;
+    cursor: pointer;
+    box-shadow: 1px 1px 1px white, 0px 0px 1px #0d0d0d;
+    background: linear-gradient(to right, #ffffff 18%, #000066 100%);
+    border-radius: 11.2px;
+    border: 0px solid #130101;
+  }
+  input[type=range]::-webkit-slider-thumb {
+    box-shadow: 1.8px 1.8px 5.9px rgba(0, 0, 0, 0), 0px 0px 1.8px rgba(13, 13, 13, 0);
+    border: 1.2px solid black;
+    height: 25px;
+    width: 34px;
+    border-radius: 28px;
+    background: rgba(255, 255, 255, 0.93);
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: 2.2px;
+  }
+  input[type=range]:focus::-webkit-slider-runnable-track {
+    background: linear-gradient(to right, #ffffff 18%, #000066 100%);
+  }
+  input[type=range]::-moz-range-track {
+    width: 100%;
+    height: 29.4px;
+    cursor: pointer;
+    box-shadow: 1px 1px 1px white, 0px 0px 1px #0d0d0d;
+    background: white;
+    border-radius: 11.2px;
+    border: 0px solid #130101;
+  }
+  input[type=range]::-moz-range-thumb {
+    box-shadow: 1.8px 1.8px 5.9px rgba(0, 0, 0, 0), 0px 0px 1.8px rgba(13, 13, 13, 0);
+    border: 1.2px solid black;
+    height: 25px;
+    width: 34px;
+    border-radius: 28px;
+    background: rgba(255, 255, 255, 0.93);
+    cursor: pointer;
+  }
+  input[type=range]::-ms-track {
+    width: 100%;
+    height: 29.4px;
+    cursor: pointer;
+    background: transparent;
+    border-color: transparent;
+    color: transparent;
+  }
+  input[type=range]::-ms-fill-lower {
+    background: white;
+    border: 0px solid #130101;
+    border-radius: 22.4px;
+    box-shadow: 1px 1px 1px white, 0px 0px 1px #0d0d0d;
+  }
+  input[type=range]::-ms-fill-upper {
+    background: white;
+    border: 0px solid #130101;
+    border-radius: 22.4px;
+    box-shadow: 1px 1px 1px white, 0px 0px 1px #0d0d0d;
+  }
+  input[type=range]::-ms-thumb {
+    box-shadow: 1.8px 1.8px 5.9px rgba(0, 0, 0, 0), 0px 0px 1.8px rgba(13, 13, 13, 0);
+    border: 1.2px solid black;
+    width: 34px;
+    border-radius: 28px;
+    background: rgba(255, 255, 255, 0.93);
+    cursor: pointer;
+    height: 25px;
+  }
+  input[type=range]:focus::-ms-fill-lower {
+    background: #E2691E;
+  }
+  input[type=range]:focus::-ms-fill-upper {
+    background: #0d0d0d;
+  }
+.milk_10{
+    background: #fafafa;
+}
+  .milk_8{
+    background:#c19d67
+  }
+  .milk_6{
+    background:#8d7147
+  }
+  .milk_4{
+    background: #5e4423
+  }
+  .milk_2{
+    background:#3a2306
+  }
+  .milk_0{
+    background:#241508
+  }
+
+    #bottle{
+      width:350px;
+      height:400px;
+      margin-left: 20%;
+      display: table-cell;
+      vertical-align: bottom;
+      background-image: url("{{url_for('static',filename='mug2.png')}}");
+      background-size: 100% 100%;
+    }
+    #inputs{
+      width:50%;
+      height:200px;
+      float:right;
+      margin-right:10%;
+    }
+    .block{
+      width:67.5%;
+      height:27px;
+    //  background: #6f4e37;
+      opacity:0.9;
+      z-index: 1;
+    }
+
+    #bottle_blocks{
+      width:100%;
+      height:auto;
+      margin-bottom:10%;
+    margin-left: 28%;
+    }
+    .lowest{
+      border-bottom-right-radius: 21px;
+      border-bottom-left-radius: 21px;
+    }
+    #getmycoffee{
+      width:90%;
+      margin:auto;
+      height:40px;
+      text-align:center;
+      background:#222222;
+      color:white;
+      font-size:25px;
+      font-family:calibri;
+      border:1px solid black;
+      border-radius:1em;
+      float:right;
+      margin-right:6%;
+    }
+    .topmost{
+      border-top-left-radius: 90%;
+      border-top-right-radius: 90%;
+    }
+    .sugar_block{
+    height: 90%;
+    width: 10%;
+    background-size: 100% 100%;
+    border-bottom:1px solid #bebebe;
+      background-image: url("{{url_for('static',filename='sugar.png')}}");
+      z-index: 1;
+      float:left;
+    }
+    #sugar_blocks{
+      width:300px;
+      height:40px;
+      display:inline-block;
+      margin-left:8%;
+
+    }
+
+    </style>
+    <script>
+    max_blocks=10
+    coffee_blocks=0
+    milk_blocks=0
+    sugar_blocks=0
+    coffee_blocks_actual=0
+    milk_blocks_actual=0
+    function draw_blocks(){
+      total_blocks=coffee_blocks+milk_blocks
+      console.log("total"+total_blocks)
+      if(total_blocks!=0){
+        coffee_blocks_actual=parseInt((coffee_blocks/total_blocks)*10)
+        milk_blocks_actual=parseInt((milk_blocks/total_blocks)*10)
+      }
+      else{
+        coffee_blocks_actual=0
+        milk_blocks_actual=0
+      }
+      console.log("coffee"+coffee_blocks_actual)
+      console.log("milk"+milk_blocks_actual)
+      console.log("total"+total_blocks)
+      color=0
+      if(milk_blocks==0){
+        color=0
+      }
+      else{
+        color=Math.floor((milk_blocks_actual/(coffee_blocks_actual+milk_blocks_actual))*10)
+        console.log(color)
+        color=color%2==0?color:color-1
+        console.log(color)
+      }
+        bottle=document.getElementById("bottle_blocks")
+        bottle.innerHTML=''
+        for (i=0;i<coffee_blocks_actual;i++){
+          block=document.createElement("div")
+          block.classList.add('block')
+          block.classList.add('milk_'+color)
+          bottle.appendChild(block)
+      }
+        for (i=0;i<milk_blocks_actual;i++){
+          block=document.createElement("div")
+          block.classList.add('block')
+          block.classList.add('milk_'+color)
+          bottle.appendChild(block)
+
+
+
+      }
+      $($("#bottle_blocks div:last")).addClass("lowest")
+      $($("#bottle_blocks div")[0]).addClass("topmost")
+
+    }
+
+
+    function onMilkChange(value){
+      value=parseInt(value)
+      // if(coffee_blocks+value>10){
+      //   alert("Cant go that far ! ")
+      //   document.getElementById('milk').value=milk_blocks
+      // }
+      // else{
+      //   milk_blocks=parseInt(value)
+      //   draw_blocks()
+      // }
+      milk_blocks=parseInt(value)
+      draw_blocks()
+    }
+    function onCoffeechange(value){
+      value=parseInt(value)
+      // if(milk_blocks+value>10){
+      //   alert("Cant go that far ! ")
+      //   document.getElementById('coffee').value=coffee_blocks
+      // }
+      // else{
+      //
+      //   coffee_blocks=parseInt(value)
+      //   draw_blocks()
+      // }
+      coffee_blocks=parseInt(value)
+      draw_blocks()
+    }
+    function onSugarChange(value){
+      sugar_blocks=parseInt(value)
+      sugar_block=document.getElementById("sugar_blocks")
+      sugar_block.innerHTML=""
+      if(sugar_blocks>=7){
+        alert("That's more sugar than normal")
+      }
+      span=document.createElement('span')
+      span.innerHTML="sugar cubes - <br/>"
+      sugar_block.append(span)
+      for(i=0;i<sugar_blocks;i++){
+        block=document.createElement("div")
+        block.classList.add('sugar_block')
+        sugar_block.appendChild(block)
+      }
+    }
+    $(document).ready(function(){
+      var    coffees =  {
+"KOPK" 	:"Kopi O Po Kosong",
+"KOK" 	:"Kopi O Kosong",
+"KOGK" 	:"Kopi O Gau Kosong",
+"KOPSD" :"Kopi O Po Siew Dai",
+"KOSD"  :"Kopi O Siew Dai",
+"KOGSD" :"Kopi O Gau Siew Dai",
+"KOP" 	:"Kopi O Po",
+"KO" 	:"Kopi O",
+"KOG" 	:"Kopi O Gau",
+"KOPGD" :"Kopi O Po Gah Dai",
+"KOGD" 	:"Kopi O Gah Dai",
+"KOGGD" :"Kopi O Gau Gah Dai",
+"KDL" 	:"Kopi Di Lo",
+"KP" 	:"Kopi Po",
+"KG"  	:"Kopi Gau",
+"KPSD" 	:"Kopi Po Siew Dai",
+"KSD" 	:"Kopi Siew Dai",
+"KGSD" 	:"Kopi Gau Siew Dai",
+"K" 	:"Kopi",
+"KPGD" 	:"Kopi Po Gah Dai",
+"KGD"	:"Kopi Gah Dai",
+"KGGD" 	:"Kopi Gau Gah Dai",
+"KCPK"	:"Kopi C Po Kosong",
+"KCK" 	:"Kopi C Kosong",
+"KCGK" 	:"Kopi C Gau Kosong",
+"KCPSD" :"Kopi C Po Siew Dai",
+"KCSD" 	:"Kopi C Siew Dai",
+"KCGSD" :"Kopi C Gau Siew Dai",
+"KCP" 	:"Kopi C Po",
+"KC" 	:"Kopi C",
+"KCG" 	:"Kopi C Gau",
+"KCPGD" :"Kopi C Po Gah Dai",
+"KCGD" 	:"Kopi C Gah Dai",
+"KCGGD" :"Kopi C Gau Gah Dai",
+"NA"	:"Not Available"
+}
+      $("#getmycoffee").click(function(){
+        if(coffee_blocks==0){
+          alert("Get a life ! by adding some coffee !! ")
+        }
+        else{
+          $("#inputs").LoadingOverlay("show",{height:'300px','text':'brewing !!'});
+          if(milk_blocks==0){
+            coffee_blocks_actual=coffee_blocks
+          }
+          $.post({
+
+            url:'/getcoffee',
+            data:{'kopi':coffee_blocks,'milk':milk_blocks,'sugar':sugar_blocks},
+            success:function(result){
+              result=result.split("_")[0]
+              $("#inputs").LoadingOverlay('hide')
+              console.log(result)
+              $("#dialog").dialogBox({'width': '30%',
+  'height': '30%',
+  title: 'There You Go !!! ',
+            'content':"Please collect your " + coffees[result] + " from our expert !! ",// cancel button text
+            'cancelValue': "I love it ! ",
+            'effect':'sign',
+            'hasBtn': true,
+            'cancel': function(){
+              location.reload()
+  }})
+            }
+          })
+        }
+
+        // if(total_blocks==coffee_blocks):
+        // coffee_val=parseInt((coffee_blocks/total_blocks)*10)
+        // milk_val=parseInt((milk_blocks/total_blocks)*10)
+
+      })
+    })
+    </script>
+  </head>
+  <body>
+<div id="inputs" style="width:49%;">
+<h1>  Make Your Own Coffee ! Mix it Up ! </h1><br>
+<h3>  Milk </h3>
+  <input type="range" min=0 max=10 value=0 step=1 id="milk" onchange='onMilkChange(this.value)'/>
+<h3>  Coffee </h3>
+  <input type="range" min=0 max=10 value=0 step=1 id="coffee" onchange='onCoffeechange(this.value)'/>
+<h3>  Sugar </h3>
+  <input type="range" min=0 max=10 value=0 step=1 id="sugar" onchange='onSugarChange(this.value)'/>
+</div>
+<div id="bottle">
+  <div id="bottle_blocks">
+  </div>
+
+</div>
+<div id="sugar_blocks">
+  Looks like you don't need sugar !!
+</div>
+<br>
+<br>
+<br>
+<br>
+<input type="button" id="getmycoffee" value="That's Enough ! Get My Coffee !" >
+<div id="dialog"></div>
+
+  </body>
+</html>

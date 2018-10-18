@@ -1,16 +1,16 @@
 # CoffeeMaker
-Singapore Coffee Ordering Guide - Using Fuzzy Logic
+Singapore Coffee Ordering Guide - Using Fuzzy Logic <br>
 
 Requirements
-Python 3.6
+Python 3.6 <br>
 
-Other python modules
+Other python modules <br>
 
-Skfuzzy 0.3
-Numpy
-Flask
+Skfuzzy 0.3,
+Numpy,
+Flask,
 matplotlib
 
-
-Run - python server.py
-default URL - localhost:5000
+<br>
+Run - python server.py<br>
+default URL - localhost:5000<br>

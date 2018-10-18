@@ -12,5 +12,6 @@ Flask,
 matplotlib
 
 <br>
-<h1>Run - python server.py</h1><br>
+<h1>Running the application </h1> <br>
+python server.py</h1><br>
 default URL - localhost:5000<br>
